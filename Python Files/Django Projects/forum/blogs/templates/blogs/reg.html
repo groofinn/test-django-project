@@ -1,0 +1,24 @@
+<html>
+<head>
+    <title>registration</title>
+    <h1>blogs registration</h1>
+</head>
+<body>
+    <a href='{% url "blogs:index" %}'>back</a>
+    
+        <form action='{% url "blogs:reg" %}' method='POST'>
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>enter your name</td>
+                <td><input type="text" name='author_name'></br></td>
+            </tr>
+            <tr>
+                <td>enter your password</td>
+                <td><input type="password" name='author_password'></td>
+            </tr>
+        </table>
+            <input type='submit' value='register'>
+        </form>
+</body>
+</html>
