@@ -17,6 +17,3 @@ class DetailView(generic.DetailView):
     template_name = 'blogs/detail.html'
     def get_queryset(self):
         return Blog.objects.all()
-
-def reg(request):
-    return render(request, 'blogs/reg.html', {Author.author_name: 'author_name'})
