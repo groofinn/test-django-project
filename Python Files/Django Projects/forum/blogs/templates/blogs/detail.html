@@ -1,17 +1,21 @@
 <html>
-    <head>
-        <title>{{ blog.blog_name }}</title>
-        <h1>blog detail</h1>
-    </head>
-    <body>
-        <a href='{% url "blogs:index" %}'>back</a>
-        <h3>
-            {{ blog.blog_name }}
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            {{ blog.author.author_name }}
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            {{ blog.pub_date }}
-        </h3>
-        <p>{{ blog.blog_text }}</p>
-    </body>
+<head>
+
+    <title>{{ blog.blog_name }}</title>
+    <h1>blog detail</h1>
+
+</head>
+<body>
+
+    <a href='{% url "blogs:index" %}'>back</a>
+    <h3>
+        {{ blog.blog_name }}
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        {{ blog.author.author_name }}
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        {{ blog.pub_date }}
+    </h3>
+    <p>{{ blog.blog_text }}</p>
+
+</body>
 </html>

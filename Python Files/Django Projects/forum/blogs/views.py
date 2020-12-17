@@ -1,8 +1,10 @@
+from accounts.models import User
+from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import generic
-from django.core.paginator import Paginator
-from .models import Author, Blog
+
+from .models import Blog
 
 
 class IndexView(generic.ListView):
