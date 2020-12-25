@@ -7,5 +7,15 @@
 </head>
 <body>
     
+    <a href='{% url "blogs:index" %}'>blogs</a></br>
+
+    {% if user.is_authenticated %}
+        you are logged in</br>
+        <a href='logout/'>logout</a>
+    {% else %}
+        you are not logged in</br>
+        <a href='login/'>login</a>
+    {% endif %}
+
 </body>
 </html>

@@ -7,17 +7,18 @@
 </head>
 <body>
 
+    <a href='{% url "accounts:index" %}'>accounts</a>
     {% if latest_blog_list %}
         <table>
             <tr>
                 <th>name</th>
-                <th>author</th>
+                <th>user</th>
                 <th>publication date</th>
             </tr>
         {% for blog in page_obj %}
             <tr>
                 <td><a href='/blogs/{{ blog.id }}/'>{{ blog.blog_name }}</a></td>
-                <td> | {{ blog.author.author_name }}</td>
+                <td> | {{ blog.user.user_name }}</td>
                 <td> | {{ blog.pub_date }}</td>
             </tr>
         {% endfor %}
