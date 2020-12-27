@@ -1,15 +1,15 @@
 <html>
 <head>
 
-    <title>accounts login</title>
-    <h1>accounts login</h1>
+    <title>accounts register</title>
+    <h1>accounts register</h1>
 
 </head>
 <body>
 
     <a href='{% url "accounts:index" %}'>back</a>
-    
-    <form action='{% url "accounts:login" %}' method='post'>
+
+    <form action='{% url "accounts:register" %}' method='post'>
         {% csrf_token %}
         <table>
             <tr>
@@ -18,12 +18,14 @@
             </tr>
             <tr>
                 <td>password:</td>
-                <td>{{ form.password }}</td>
+                <td>{{ form.password1 }}</td>
+            </tr>
+            <tr>
+                <td>confirm password:</td>
+                <td>{{ form.password2 }}</td>
             </tr>
         </table>
-        <input type='hidden' name='next' value='{{ next }}'>
-        <input type='submit' value='login'>
+        <input type='submit' value='register'>
     </form>
-
 </body>
 </html>

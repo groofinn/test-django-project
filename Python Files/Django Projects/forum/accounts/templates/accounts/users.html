@@ -1,29 +1,28 @@
 <html>
 <head>
 
-    <title>blogs index</title>
-    <h1>blogs index</h1>
+    <title>accounts users</title>
+    <h1>accounts users</h1>
 
 </head>
 <body>
 
-    <a href='{% url "accounts:index" %}'>accounts</a>
-    {% if latest_blog_list %}
+    <a href='{% url "accounts:index" %}'>back</a></br>
+
+    {% if users_list %}
         <table>
             <tr>
-                <th>name</th>
-                <th>user</th>
-                <th>publication date</th>
+                <th>user name</th>
+                <th>registration date</th>
             </tr>
-        {% for blog in page_obj %}
+        {% for user in page_obj %}
             <tr>
-                <td><a href='/blogs/{{ blog.id }}/'>{{ blog.blog_name }}</a></td>
-                <td> | {{ blog.user.user_name }}</td>
-                <td> | {{ blog.pub_date }}</td>
+                <td><a href='{{ user.username }}/'>{{ user.username }}</a></td>
+                <td>| {{ user.date_joined }}</td>
             </tr>
         {% endfor %}
         </table></br>
-          
+
         {% if page_obj.has_previous %}
             <a href='?page={{ page_obj.previous_page_number }}'>previous</a>
         {% else %}
@@ -38,8 +37,7 @@
         {% endif %}
 
     {% else %}
-        <p>no blogs are available</p>
+        <p>no users are available</p>
     {% endif %}
-
 </body>
 </html>

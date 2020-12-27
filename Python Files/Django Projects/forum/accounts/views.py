@@ -1,9 +1,11 @@
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
-from django.shortcuts import render
-from django.shortcuts import redirect
+from django.core.paginator import Paginator
+from django.shortcuts import redirect, render
 from django.urls import reverse
-from .models import User
+from django.views import generic
 
 
 def index(request):
@@ -16,3 +18,36 @@ class UserLoginView(LoginView):
 
 class UserLogoutView(LogoutView):
     template_name = 'accounts/logout.html'
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        print(form.is_valid())
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('accounts:index')
+    else:
+        form = UserCreationForm()
+    return render(request, 'accounts/register.html', {'form': form})
+
+def settings(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        user = User.objects.get(username=username)
+        user.delete()
+        return redirect('accounts:index')
+    return render(request, 'accounts/settings.html')
+
+class UsersView(generic.ListView):
+    template_name = 'accounts/users.html'
+    context_object_name = 'users_list'
+    paginate_by = 2
+    def get_queryset(self):
+        return User.objects.all().order_by('date_joined')
+
+def detail(request, username):
+    return render(request, 'accounts/detail.html')
