@@ -7,12 +7,25 @@
 </head>
 <body>
 
-    <a href='{% url "accounts:index" %}'>back</a></br>
+    <a href='{{ request.META.HTTP_REFERER }}'>back</a></br>
 
     <h3>
         {{ user.username }}</br>
-        {{ user.date_joined }}
+        {{ user.date_joined }}</br>
     </h3>
+
+    {% if page_obj %}
+        <p>{{ user.username }}'s blogs:</p>
+
+        <ul>
+        {% for blog in page_obj %}
+           <li><a href='{% url "blogs:detail" blog.id %}'>{{ blog }}</a></li>
+        {% endfor %}
+        </ul>
+
+    {% else %}
+        <p>no {{ user.username }}'s blogs are available</p>
+    {% endif %}
 
 </body>
 </html>

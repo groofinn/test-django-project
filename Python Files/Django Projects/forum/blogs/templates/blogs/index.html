@@ -8,6 +8,11 @@
 <body>
 
     <a href='{% url "accounts:index" %}'>accounts</a>
+
+    {% if user.is_authenticated %}
+        </br></br><a href='creation/'>create blog</a>
+    {% endif %}
+
     {% if latest_blog_list %}
         <table>
             <tr>
@@ -18,7 +23,7 @@
         {% for blog in page_obj %}
             <tr>
                 <td><a href='/blogs/{{ blog.id }}/'>{{ blog.blog_name }}</a></td>
-                <td> | {{ blog.user.user_name }}</td>
+                <td> | <a href='{% url "accounts:detail" blog.user %}'>{{ blog.user }}</a></td>
                 <td> | {{ blog.pub_date }}</td>
             </tr>
         {% endfor %}

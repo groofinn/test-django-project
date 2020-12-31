@@ -1,3 +1,4 @@
+from blogs.models import Blog
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -22,7 +23,6 @@ class UserLogoutView(LogoutView):
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
-        print(form.is_valid())
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
@@ -45,9 +45,18 @@ def settings(request):
 class UsersView(generic.ListView):
     template_name = 'accounts/users.html'
     context_object_name = 'users_list'
-    paginate_by = 2
+    paginate_by = 10
     def get_queryset(self):
         return User.objects.all().order_by('date_joined')
 
 def detail(request, username):
-    return render(request, 'accounts/detail.html')
+    user_info = User.objects.get(username=username)
+    user_id = user_info.id
+    blog_list = Blog.objects.filter(user=user_id)
+    paginator = Paginator(blog_list, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(
+        request, 'accounts/detail.html',
+        {'user': user_info, 'page_obj': page_obj}
+    )

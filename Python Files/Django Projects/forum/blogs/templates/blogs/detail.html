@@ -7,14 +7,13 @@
 </head>
 <body>
 
-    <a href='{% url "blogs:index" %}'>back</a>
+    <a href='{{ request.META.HTTP_REFERER }}'>back</a>
     
     <h3>
-        {{ blog.blog_name }}
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        {{ blog.user.user_name }}
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        {{ blog.pub_date }}
+        {{ blog.user }}</br>
+        {{ blog.pub_date }}</br></br>
+        {{ blog.blog_name }}</br>
+        
     </h3>
     <p>{{ blog.blog_text }}</p>
 
