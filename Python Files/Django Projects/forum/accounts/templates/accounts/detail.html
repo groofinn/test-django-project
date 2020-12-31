@@ -7,7 +7,7 @@
 </head>
 <body>
 
-    <a href='{{ request.META.HTTP_REFERER }}'>back</a></br>
+    <a href='{% url "accounts:users" %}'>back</a></br>
 
     <h3>
         {{ user.username }}</br>
@@ -21,7 +21,20 @@
         {% for blog in page_obj %}
            <li><a href='{% url "blogs:detail" blog.id %}'>{{ blog }}</a></li>
         {% endfor %}
-        </ul>
+        </ul></br>
+
+        {% if page_obj.has_previous %}
+            <a href='?page={{ page_obj.previous_page_number }}'>previous</a>
+        {% else %}
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        {% endif %}
+
+        page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+
+        {% if page_obj.has_next %}
+            <a href='?page={{ page_obj.next_page_number }}'>next</a>
+        {% endif %}
 
     {% else %}
         <p>no {{ user.username }}'s blogs are available</p>
