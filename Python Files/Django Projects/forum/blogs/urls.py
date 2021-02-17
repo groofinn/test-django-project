@@ -2,6 +2,7 @@ from django.urls import path
 
 from . import views
 
+# name for fast referring
 app_name = 'blogs'
 
 urlpatterns = [

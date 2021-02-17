@@ -9,10 +9,12 @@
 
     <a href='{% url "accounts:index" %}'>accounts</a>
 
+    {# authenticated user can create blogs #}
     {% if user.is_authenticated %}
         </br></br><a href='creation/'>create blog</a>
     {% endif %}
 
+    {# if queryset had blogs in then makes table of blogs #}
     {% if latest_blog_list %}
         <table>
             <tr>
@@ -28,7 +30,8 @@
             </tr>
         {% endfor %}
         </table></br>
-          
+        
+        {# makes pages if too many blogs #}
         {% if page_obj.has_previous %}
             <a href='?page={{ page_obj.previous_page_number }}'>previous</a>
         {% else %}

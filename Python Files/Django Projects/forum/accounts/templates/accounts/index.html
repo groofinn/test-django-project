@@ -9,6 +9,7 @@
     
     <a href='{% url "blogs:index" %}'>blogs</a></br>
 
+    {# shows user's name and some pages if logged in #}
     {% if user.is_authenticated %}
         you are logged in as <b>{{ user.username }}</b></br>
         <a href='logout/'>logout</a></br></br>

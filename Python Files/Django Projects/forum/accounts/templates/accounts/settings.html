@@ -9,6 +9,7 @@
 
     <a href='{% url "accounts:index" %}'>back</a></br></br>
 
+    {# deletes accounts if button was pressed #}
     <form action='{% url "accounts:settings" %}' method='post'>
         {% csrf_token %}
         <input type='hidden' name='username' value='{{ user.username }}'>

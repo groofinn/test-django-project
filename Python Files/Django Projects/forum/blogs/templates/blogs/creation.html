@@ -9,6 +9,7 @@
 
     <a href='{% url "blogs:index" %}'>back</a>
 
+    {# creates a blog #}
     <form action='{% url "blogs:creation" %}', method='POST'>
         {% csrf_token %}
         {{ form.as_p }}

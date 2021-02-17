@@ -5,6 +5,7 @@ from django.db import models
 from django.utils import timezone
 
 
+# model that has all the blog information
 class Blog(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     blog_name = models.CharField(max_length=200)

@@ -9,11 +9,13 @@
 
     <a href='{% url "accounts:users" %}'>back</a></br>
 
+    {# displays user's information #}
     <h3>
         {{ user.username }}</br>
         {{ user.date_joined }}</br>
     </h3>
 
+    {# if had queryset makes list of user's blogs #}
     {% if page_obj %}
         <p>{{ user.username }}'s blogs:</p>
 

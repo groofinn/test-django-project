@@ -9,6 +9,7 @@
 
     <a href='{% url "accounts:index" %}'>back</a>
     
+    {# form sends to user model and checks if user exist #}
     <form action='{% url "accounts:login" %}' method='post'>
         {% csrf_token %}
         <table>

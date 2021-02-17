@@ -9,6 +9,7 @@
 
     <a href='{% url "accounts:index" %}'>back</a></br>
 
+    {# if had users in then makes table with users #}
     {% if users_list %}
         <table>
             <tr>
@@ -22,7 +23,8 @@
             </tr>
         {% endfor %}
         </table></br>
-
+        
+        {# makes pages if too many users #}
         {% if page_obj.has_previous %}
             <a href='?page={{ page_obj.previous_page_number }}'>previous</a>
         {% else %}
