@@ -1,14 +1,13 @@
-<html>
-<head>
+{% extends '../base/base.html' %}
 
+{% block head %}
     <title>accounts detail</title>
     <h1>accounts detail</h1>
-
-</head>
-<body>
-
+    
     <a href='{% url "accounts:users" %}'>back</a></br>
+{% endblock %}
 
+{% block body %}
     {# displays user's information #}
     <h3>
         {{ user.username }}</br>
@@ -32,7 +31,7 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         {% endif %}
 
-        page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        <span class='t'>page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
 
         {% if page_obj.has_next %}
             <a href='?page={{ page_obj.next_page_number }}'>next</a>
@@ -41,6 +40,4 @@
     {% else %}
         <p>no {{ user.username }}'s blogs are available</p>
     {% endif %}
-
-</body>
-</html>
+{% endblock %}

@@ -1,32 +1,34 @@
-<html>
-<head>
+{% extends '../base/base.html' %}
 
+{% block head %}
     <title>blogs index</title>
     <h1>blogs index</h1>
-
-</head>
-<body>
 
     <a href='{% url "accounts:index" %}'>accounts</a>
 
     {# authenticated user can create blogs #}
     {% if user.is_authenticated %}
-        </br></br><a href='creation/'>create blog</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href='creation/'>create blog</a>
     {% endif %}
 
+    </br>
+{% endblock %}
+
+{% block body %}
     {# if queryset had blogs in then makes table of blogs #}
     {% if latest_blog_list %}
         <table>
             <tr>
-                <th>name</th>
-                <th>user</th>
-                <th>publication date</th>
+                <th><span class='t'>name</span></th>
+                <th><span class='t'>user</span></th>
+                <th><span class='t'>publication date</span></th>
             </tr>
         {% for blog in page_obj %}
             <tr>
                 <td><a href='/blogs/{{ blog.id }}/'>{{ blog.blog_name }}</a></td>
-                <td> | <a href='{% url "accounts:detail" blog.user %}'>{{ blog.user }}</a></td>
-                <td> | {{ blog.pub_date }}</td>
+                <td><a href='{% url "accounts:detail" blog.user %}'>{{ blog.user }}</a></td>
+                <td><span class='t'>{{ blog.pub_date }}</span></td>
             </tr>
         {% endfor %}
         </table></br>
@@ -39,7 +41,7 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         {% endif %}
 
-        page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        <span class='t'>page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
 
         {% if page_obj.has_next %}
             <a href='?page={{ page_obj.next_page_number }}'>next</a>
@@ -48,6 +50,4 @@
     {% else %}
         <p>no blogs are available</p>
     {% endif %}
-
-</body>
-</html>
+{% endblock %}

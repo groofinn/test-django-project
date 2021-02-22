@@ -1,0 +1,35 @@
+{% extends '../base/base.html' %}
+
+{% block head %}
+    <title>accounts index</title>
+    <h1>accounts index</h1>
+
+    <a href='{% url "blogs:index" %}'>blogs</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href='users/'>users</a>
+
+    {% if user.is_authenticated %}
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href='settings/'>settings</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href='logout/'>logout</a>
+    {% endif %}
+
+    </br>
+{% endblock %}
+
+{% block body %}
+    {# shows user's name and some pages if logged in #}
+    {% if user.is_authenticated %}
+        <span class='t'>you are logged in as </span>
+        <b>{{ user.username }}</b></br>
+        
+    {% else %}
+        <span class='t'>you are</span>
+        <b> not </b>
+        <span class='t'>logged in</span></br>
+        <a href='login/'>login</a>
+        <span class='t'> or </span>
+        <a href='register/'>register</a>
+    {% endif %}
+{% endblock %}

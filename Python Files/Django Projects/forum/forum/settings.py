@@ -55,7 +55,7 @@ ROOT_URLCONF = 'forum.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -109,3 +109,7 @@ STATIC_URL = '/static/'
 
 # Added by me
 LOGIN_REDIRECT_URL = '/accounts/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]

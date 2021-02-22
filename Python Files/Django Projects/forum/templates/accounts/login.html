@@ -1,0 +1,29 @@
+{% extends '../base/base.html' %}
+
+{% block head %}
+    <title>accounts login</title>
+    <h1>accounts login</h1>
+
+    <a href='{% url "accounts:index" %}'>back</a></br>
+{% endblock %}
+
+{% block body %}
+    {# form sends to user model and checks if user exist #}
+    <form action='{% url "accounts:login" %}' method='post'>
+        {% csrf_token %}
+        <div id='width'>
+        <div id='table'>
+            <div id='row'>
+                <div id='cell'><span class='t'>username:</span></div>
+                    <div id='cell'>{{ form.username }}</div>
+            </div>
+            <div id='row'>
+                <div id='cell'><span class='t'>password:</span></div>
+                    <div id='cell'>{{ form.password }}</div>
+            </div>
+        </div>
+        <input type='hidden' name='next' value='{{ next }}'>
+        <input type='submit' value='login'>
+        </div>
+    </form>
+{% endblock %}

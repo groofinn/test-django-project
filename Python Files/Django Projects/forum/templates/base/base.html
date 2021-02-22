@@ -1,0 +1,17 @@
+<html>
+<head>
+    
+    {% load static %}
+    <link rel='stylesheet' type='text/css' href="{% static 'base/css/style.css' %}">
+
+    {% block head %}{% endblock %}
+
+</head>
+<body>
+
+    <span class='line'></span></br>
+
+    {% block body %}{% endblock %}
+
+</body>
+</html>

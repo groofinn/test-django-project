@@ -1,0 +1,96 @@
+h1, h3, a, b, p, pre, input, textarea {
+    color: rgb(50, 5, 135);
+    font-family: sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(135, 0, 255);
+}
+
+ul {
+    list-style-type: none;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 5px;
+}
+
+th {
+    border-bottom: 2px double rgb(50, 5, 135);
+}
+
+input[type='submit'] {
+    width: 98.7%;
+    background: none;
+    font-weight: bold;
+    border: 2px dotted rgb(50, 5, 135);
+    outline: none;
+}
+
+input[type='submit']:hover {
+    color: rgb(135, 0, 255);
+    border-color: rgb(135, 0, 255);
+}
+
+input[type='submit']:active {
+    border-style: double;
+}
+
+input[type='text'], input[type='password'] {
+    font-weight: bold;
+    border: 2px double rgb(50, 5, 135);
+    outline: none;
+}
+
+input[type='text']:focus, input[type='password']:focus, textarea:focus {
+    color: rgb(135, 0, 255);
+    border-color: rgb(135, 0, 255);
+}
+
+textarea {
+    font-weight: bold;
+    border: 2px double rgb(50, 5, 135);
+    outline: none;
+    height: 15%;
+    width: 25%;
+    resize: none;
+}
+
+.t {
+    color: rgb(50, 5, 135);
+    font-family: sans-serif;
+    font-size: 100%;
+}
+
+.line {
+    height: 1px;
+    width: 99%;
+    background: rgb(50, 5, 135);
+    position: absolute;
+}
+
+#table {
+    display: table;
+    padding: 2px;
+}
+
+#row {
+    display: table-row;
+}
+
+#cell {
+    display: table-cell;
+    padding: 2px;
+}
+
+#width {
+    display: table;
+}

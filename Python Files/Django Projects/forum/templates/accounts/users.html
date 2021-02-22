@@ -1,25 +1,24 @@
-<html>
-<head>
+{% extends '../base/base.html' %}
 
+{% block head %}
     <title>accounts users</title>
     <h1>accounts users</h1>
-
-</head>
-<body>
-
+    
     <a href='{% url "accounts:index" %}'>back</a></br>
-
+{% endblock %}
+    
+{% block body %}
     {# if had users in then makes table with users #}
     {% if users_list %}
         <table>
             <tr>
-                <th>user name</th>
-                <th>registration date</th>
+                <th><span class='t'>user name</span></th>
+                <th><span class='t'>registration date</span></th>
             </tr>
         {% for user in page_obj %}
             <tr>
                 <td><a href='{{ user.username }}/'>{{ user.username }}</a></td>
-                <td>| {{ user.date_joined }}</td>
+                <td><span class='t'>{{ user.date_joined }}</span></td>
             </tr>
         {% endfor %}
         </table></br>
@@ -32,7 +31,7 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         {% endif %}
 
-        page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        <span class='t'>page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
 
         {% if page_obj.has_next %}
             <a href='?page={{ page_obj.next_page_number }}'>next</a>
@@ -41,5 +40,4 @@
     {% else %}
         <p>no users are available</p>
     {% endif %}
-</body>
-</html>
+{% endblock %}

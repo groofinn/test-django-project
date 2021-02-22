@@ -1,0 +1,12 @@
+{% extends '../base/base.html' %}
+
+{% block head %}
+    <title>accounts logout</title>
+    <h1>accounts logout</h1>
+    <a href='{% url "accounts:index" %}'>back</a></br>
+{% endblock %}
+
+{% block body %}
+    {# just shows that user logged out successfully #}
+    <span class='t'>you are successfully logged out</span>
+{% endblock %}

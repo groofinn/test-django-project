@@ -1,22 +1,19 @@
-<html>
-<head>
+{% extends '../base/base.html' %}
 
+{% block head %}
     <title>{{ blog.blog_name }}</title>
     <h1>blog detail</h1>
 
-</head>
-<body>
+    <a href='{% url "blogs:index" %}'>back</a></br>
+{% endblock %}
 
-    <a href='{% url "blogs:index" %}'>back</a>
-    
+{% block body %}
     {# shows user's and blog info #}
     <h3>
         {{ blog.user }}</br>
         {{ blog.pub_date }}</br></br>
         {{ blog.blog_name }}</br>
-        
     </h3>
+    
     <p>{{ blog.blog_text }}</p>
-
-</body>
-</html>
+{% endblock %}

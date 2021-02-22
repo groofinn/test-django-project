@@ -1,0 +1,32 @@
+{% extends '../base/base.html' %}
+
+{% block head %}
+    <title>accounts register</title>
+    <h1>accounts register</h1>
+
+    <a href='{% url "accounts:index" %}'>back</a></br>
+{% endblock %}
+
+{% block body %}
+    {# from UserCreationForm makes fields and sends for validation to register view #}
+    <form action='{% url "accounts:register" %}' method='post'>
+        {% csrf_token %}
+        <div id='width'>
+        <div id='table'>
+            <div id='row'>
+                <div id='cell'><span class='t'>username:</span></div>
+                <div id='cell'>{{ form.username }}</div>
+            </div>
+            <div id='row'>
+                <div id='cell'><span class='t'>password:</span></div>
+                    <div id='cell'>{{ form.password1 }}</div>
+            </div>
+            <div id='row'>
+                <div id='cell'><span class='t'>confirm password:</span></div>
+                <div id='cell'>{{ form.password2 }}</div>
+            </div>
+        </div>
+        <input type='submit' value='register'>
+        </div>
+    </form>
+{% endblock %}

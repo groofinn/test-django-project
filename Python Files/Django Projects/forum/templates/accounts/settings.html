@@ -1,0 +1,21 @@
+{% extends '../base/base.html' %}
+
+{% block head %}
+    <title>accounts settings</title>
+    <h1>accounts settings</h1>
+
+    <a href='{% url "accounts:index" %}'>back</a></br>
+{% endblock %}
+
+{% block body %}
+    {# deletes accounts if button was pressed #}
+    <form action='{% url "accounts:settings" %}' method='post'>
+        {% csrf_token %}
+        <div id='table'>
+            <table>
+                <input type='hidden' name='username' value='{{ user.username }}'>
+                <input type='submit' value='delete account'>
+            </table>
+        </div>
+    </form>
+{% endblock %}
