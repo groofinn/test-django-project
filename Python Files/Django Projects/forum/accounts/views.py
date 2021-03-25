@@ -44,19 +44,22 @@ class UsersView(generic.ListView):
     context_object_name = 'users_list'
     paginate_by = 10
     def get_queryset(self):
-        return User.objects.all().order_by('date_joined')
+        return User.objects.all().order_by('-date_joined')
 
 # renders detail page for every user by getting user's blog info
 def detail(request, username):
     user_info = User.objects.get(username=username)
     user_id = user_info.id
-    blog_list = Blog.objects.filter(user=user_id)
+    blog_list = Blog.objects.filter(user=user_id).order_by('-pub_date')
+    latest = ''
+    if len(blog_list) > 0:
+        latest = Blog.objects.filter(user=user_id).order_by('-pub_date')[0]
     paginator = Paginator(blog_list, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(
         request, 'accounts/detail.html',
-        {'user': user_info, 'page_obj': page_obj}
+        {'account': user_info, 'page_obj': page_obj, 'latest': latest}
     )
 
 # you have to be logged in to access this page

@@ -1,24 +1,25 @@
 {% extends '../base/base.html' %}
 
-{% block head %}
-    <title>blogs creation</title>
-    <h1>blogs creation</h1>
-
-    <a href='{% url "blogs:index" %}'>back</a></br>
+{% block header %}
+    <title>Creation</title>
+    <h1>Creation</h1>
+    <p>Create Your Own Blog!</p>
 {% endblock %}
 
-{% block body %}
+{% block content %}
     {# creates a blog #}
     <form action='{% url "blogs:creation" %}', method='POST'>
         {% csrf_token %}
-        <div id='width'>
-            <input type='submit' value='create'>
+        <div class='control-group required'>
+            <div class='d-flex'>
+                <input type='submit' value='Publish' class='btn btn-lg btn-primary flex-fill mt-3 mb-2'>
+            </div>
+
+            <label for='blog_name'>Blog Name:</label>
+            <input type='text' name='blog_name' class='form-control form-control-lg mb-3' autocomplete='off'>
+
+            <label for='blog_text'>Blog Text:</label></br>
+            <textarea name='blog_text' class='form-control form-control-lg' rows='15'></textarea>
         </div>
-
-        </br><span class='t'>blog name:</span></br>
-        {{ form.blog_name }}</br>
-
-        </br><span class='t'>blog text:</span></br>
-        <textarea name='blog_text'></textarea>
     </form>
 {% endblock %}

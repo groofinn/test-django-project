@@ -1,35 +1,25 @@
 {% extends '../base/base.html' %}
 
-{% block head %}
-    <title>accounts index</title>
-    <h1>accounts index</h1>
-
-    <a href='{% url "blogs:index" %}'>blogs</a>
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <a href='users/'>users</a>
-
-    {% if user.is_authenticated %}
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <a href='settings/'>settings</a>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <a href='logout/'>logout</a>
-    {% endif %}
-
-    </br>
+{% block header %}
+    <title>Accounts</title>
+    <h1>Accounts</h1>
+    <p>See Latest News About Your Account and Accounts You Follow!</p>
 {% endblock %}
 
-{% block body %}
+{% block content %}
     {# shows user's name and some pages if logged in #}
-    {% if user.is_authenticated %}
-        <span class='t'>you are logged in as </span>
-        <b>{{ user.username }}</b></br>
-        
-    {% else %}
-        <span class='t'>you are</span>
-        <b> not </b>
-        <span class='t'>logged in</span></br>
-        <a href='login/'>login</a>
-        <span class='t'> or </span>
-        <a href='register/'>register</a>
-    {% endif %}
+    <p class='mt-1'>
+        {% if user.is_authenticated %}
+            <b>You are Logged in As 
+            <span class='text-decoration-underline'>{{ user.username }}</span>.</b>
+            <p>Now You Can See the Information You are Interested in.</br>
+            We Will Find Something For You Soon!</p>
+        {% else %}
+            <b>You are 
+            <span class='text-decoration-underline'>not</span>
+             logged in.</b></br>
+            <p>That Means You Can't See Personalized News.</br>
+            You Still Can Browse Some Other Pages.</p>
+        {% endif %}
+    </p>
 {% endblock %}

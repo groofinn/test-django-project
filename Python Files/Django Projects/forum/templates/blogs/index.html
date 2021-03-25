@@ -1,53 +1,33 @@
 {% extends '../base/base.html' %}
 
-{% block head %}
-    <title>blogs index</title>
-    <h1>blogs index</h1>
-
-    <a href='{% url "accounts:index" %}'>accounts</a>
-
-    {# authenticated user can create blogs #}
-    {% if user.is_authenticated %}
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <a href='creation/'>create blog</a>
-    {% endif %}
-
-    </br>
+{% block header %}
+    <title>Blogs</title>
+    <h1>Blogs</h1>
+    <p>See Latest Blogs From Users!</p>
 {% endblock %}
 
-{% block body %}
+{% block content %}
     {# if queryset had blogs in then makes table of blogs #}
     {% if latest_blog_list %}
-        <table>
-            <tr>
-                <th><span class='t'>name</span></th>
-                <th><span class='t'>user</span></th>
-                <th><span class='t'>publication date</span></th>
-            </tr>
-        {% for blog in page_obj %}
-            <tr>
-                <td><a href='/blogs/{{ blog.id }}/'>{{ blog.blog_name }}</a></td>
-                <td><a href='{% url "accounts:detail" blog.user %}'>{{ blog.user }}</a></td>
-                <td><span class='t'>{{ blog.pub_date }}</span></td>
-            </tr>
-        {% endfor %}
-        </table></br>
-        
-        {# makes pages if too many blogs #}
-        {% if page_obj.has_previous %}
-            <a href='?page={{ page_obj.previous_page_number }}'>previous</a>
-        {% else %}
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        {% endif %}
-
-        <span class='t'>page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
-
-        {% if page_obj.has_next %}
-            <a href='?page={{ page_obj.next_page_number }}'>next</a>
-        {% endif %}
-
+        <table class='table table-hover mt-1'>
+            <thead>
+                <tr>
+                    <th>Blog Name</th>
+                    <th>User</th>
+                    <th>Publication Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for blog in page_obj %}
+                    <tr>
+                        <td class='col-6'><a href='/blogs/{{ blog.id }}/' class='text-decoration-none'>{{ blog.blog_name }}</a></td>
+                        <td class='col-3'><a href='{% url "accounts:detail" blog.user %}' class='text-decoration-none'>{{ blog.user }}</a></td>
+                        <td class='col-3'>{{ blog.pub_date }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     {% else %}
-        <p>no blogs are available</p>
+        <p>No Blogs are Available.</p>
     {% endif %}
 {% endblock %}

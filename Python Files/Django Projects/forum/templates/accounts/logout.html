@@ -1,12 +1,14 @@
 {% extends '../base/base.html' %}
 
-{% block head %}
-    <title>accounts logout</title>
-    <h1>accounts logout</h1>
-    <a href='{% url "accounts:index" %}'>back</a></br>
+{% block header %}
+    <title>Logout</title>
+    <h1>Logout</h1>
+    <p>Action Message.</p>
 {% endblock %}
 
-{% block body %}
+{% block content %}
     {# just shows that user logged out successfully #}
-    <span class='t'>you are successfully logged out</span>
+    <p class='mt-1'><b>You are successfully logged out.</b></p>
+    <p>That Means You Will Need to Enter Your Account Information Again to Login Back.</br>
+    Select Any Page.</p>
 {% endblock %}

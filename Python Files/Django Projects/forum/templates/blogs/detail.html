@@ -1,19 +1,23 @@
 {% extends '../base/base.html' %}
 
-{% block head %}
-    <title>{{ blog.blog_name }}</title>
-    <h1>blog detail</h1>
-
-    <a href='{% url "blogs:index" %}'>back</a></br>
+{% block header %}
+    <title>Detail</title>
+    <h1>Detail</h1>
+    <p>Detailed Information About Blog &laquo;<span class='text-decoration-underline'>{{blog}}</span>&raquo;.</p>
 {% endblock %}
 
-{% block body %}
+{% block content %}
     {# shows user's and blog info #}
-    <h3>
-        {{ blog.user }}</br>
-        {{ blog.pub_date }}</br></br>
-        {{ blog.blog_name }}</br>
-    </h3>
+    <div class='row mt-1 h4'>
+        <div class='col-6 d-flex justify-content-center'>
+            &laquo;<span class='text-decoration-underline'>{{ blog }}</span>&raquo;
+        </div>
+        <div class='col-6'>
+            Published By 
+            <a href='{% url "accounts:detail" blog.user %}' class='text-decoration-none fw-bold'>{{ blog.user }}</a> 
+            on <b>{{ blog.pub_date }}</b>.
+        </div>
+    </div>
     
-    <p>{{ blog.blog_text }}</p>
+    <p class='pt-3'>{{ blog.blog_text }}</p>
 {% endblock %}

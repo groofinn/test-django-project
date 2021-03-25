@@ -1,43 +1,31 @@
 {% extends '../base/base.html' %}
 
-{% block head %}
-    <title>accounts users</title>
-    <h1>accounts users</h1>
-    
-    <a href='{% url "accounts:index" %}'>back</a></br>
+{% block header %}
+    <title>Users</title>
+    <h1>Users</h1>
+    <p>List of All Users That Have Created and Undeleted Accounts.</p>
 {% endblock %}
     
-{% block body %}
+{% block content %}
     {# if had users in then makes table with users #}
     {% if users_list %}
-        <table>
-            <tr>
-                <th><span class='t'>user name</span></th>
-                <th><span class='t'>registration date</span></th>
-            </tr>
-        {% for user in page_obj %}
-            <tr>
-                <td><a href='{{ user.username }}/'>{{ user.username }}</a></td>
-                <td><span class='t'>{{ user.date_joined }}</span></td>
-            </tr>
-        {% endfor %}
+        <table class='table table-hover mt-1'>
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>Registration Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in page_obj %}
+                    <tr>
+                        <td class='col-9'><a href='{{ user.username }}/' class='text-decoration-none'>{{ user.username }}</a></td>
+                        <td class='col-3'>{{ user.date_joined }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
         </table></br>
-        
-        {# makes pages if too many users #}
-        {% if page_obj.has_previous %}
-            <a href='?page={{ page_obj.previous_page_number }}'>previous</a>
-        {% else %}
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        {% endif %}
-
-        <span class='t'>page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
-
-        {% if page_obj.has_next %}
-            <a href='?page={{ page_obj.next_page_number }}'>next</a>
-        {% endif %}
-
     {% else %}
-        <p>no users are available</p>
+        <p>No Users are Available.</p>
     {% endif %}
 {% endblock %}

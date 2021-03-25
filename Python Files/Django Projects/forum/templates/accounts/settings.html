@@ -1,21 +1,31 @@
 {% extends '../base/base.html' %}
 
-{% block head %}
-    <title>accounts settings</title>
-    <h1>accounts settings</h1>
-
-    <a href='{% url "accounts:index" %}'>back</a></br>
+{% block header %}
+    <title>Settings</title>
+    <h1>Settings</h1>
+    <p>Manage Your Account!</p>
 {% endblock %}
 
-{% block body %}
-    {# deletes accounts if button was pressed #}
-    <form action='{% url "accounts:settings" %}' method='post'>
-        {% csrf_token %}
-        <div id='table'>
-            <table>
-                <input type='hidden' name='username' value='{{ user.username }}'>
-                <input type='submit' value='delete account'>
-            </table>
+{% block content %}
+    <div class='row mt-1'>
+        <div class='col col-6'>
+            <p>You Can Logout and Login Back Any Time.</p>
         </div>
-    </form>
+        <div class='col col-6'>
+            <a href='{% url "accounts:logout" %} ' class='btn btn-primary mt-2 w-100'>Logout</a>
+        </div>
+    </div>
+    <div class='row'>
+        <div class='col col-6'>
+            Deleting Account Can't Be Undone.
+        </div>
+        <div class='col col-6'>
+            {# deletes accounts if button was pressed #}
+            <form action='{% url "accounts:settings" %}' method='post'>
+                {% csrf_token %}
+                <input type='hidden' name='username' value='{{ user.username }}'>
+                <input type='submit' class='btn btn-primary mt-2 w-100' value='Delete Account'>
+            </form>
+        </div>
+    </div>
 {% endblock %}

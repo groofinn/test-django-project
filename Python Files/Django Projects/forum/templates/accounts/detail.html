@@ -1,43 +1,62 @@
 {% extends '../base/base.html' %}
 
-{% block head %}
-    <title>accounts detail</title>
-    <h1>accounts detail</h1>
-    
-    <a href='{% url "accounts:users" %}'>back</a></br>
+{% block header %}
+    <title>Detail</title>
+    <h1>Detail</h1>
+    <p>Detailed Information About <b>{{ account.username }}</b>.</p>
 {% endblock %}
 
-{% block body %}
+{% block content %}
     {# displays user's information #}
-    <h3>
-        {{ user.username }}</br>
-        {{ user.date_joined }}</br>
-    </h3>
+    <div class='container-fluid pt-2'>
+        <div class='row'>
+            <div class='col-6 d-flex justify-content-center'>
+                <h3>{{ account.username }}</h3>
+            </div>
 
-    {# if had queryset makes list of user's blogs #}
-    {% if page_obj %}
-        <p>{{ user.username }}'s blogs:</p>
+            <div class='col-6'>
+                <h3>Joined <b>{{ account.date_joined }}</b></h3>
+            </div>
+        </div>
 
-        <ul>
-        {% for blog in page_obj %}
-           <li><a href='{% url "blogs:detail" blog.id %}'>{{ blog }}</a></li>
-        {% endfor %}
-        </ul></br>
+        <div class='row pt-4'>
+            {% if page_obj %}
+                <div class='col-6'>
+                    <div class='d-flex justify-content-center fw-bold'>
+                        Last Activity:
+                    </div>
+                    <div class='d-flex justify-content-center'>
+                        Posted Blog
+                        &laquo;<span class='text-decoration-underline'>{{ latest }}</span>&raquo;
+                        on {{ latest.pub_date }}
+                    </div>
+                    <p class='mt-2'>{{ latest.blog_text }}</p>
+                </div>
 
-        {% if page_obj.has_previous %}
-            <a href='?page={{ page_obj.previous_page_number }}'>previous</a>
-        {% else %}
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        {% endif %}
+                <div class='col-6'>
+                    {# if had queryset makes list of user's blogs #}
+                    <b>{{ account.username }}'s Blogs:</b>
 
-        <span class='t'>page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+                    <table class='table table-hover'>
+                        {% for blog in page_obj %}
+                            <tr>
+                                <td class='col-7'><a href='{% url "blogs:detail" blog.id %}' class='text-decoration-none'>{{ blog }}</a></td>
+                                <td>{{ blog.pub_date }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
 
-        {% if page_obj.has_next %}
-            <a href='?page={{ page_obj.next_page_number }}'>next</a>
-        {% endif %}
-
-    {% else %}
-        <p>no {{ user.username }}'s blogs are available</p>
-    {% endif %}
+            {% else %}
+                <div class='col-12'>
+                    <div class='d-flex justify-content-center'>
+                        <b>No {{ account.username }}'s Blogs are Available.</b>
+                    </div>
+                    <div class='d-flex justify-content-center'>
+                        <p>Looks Like {{ account.username }} Didn't Posted Anything Yet.</p>
+                    </div>
+                </div>
+            {% endif %}
+            
+        </div>
+    </div>
 {% endblock %}
