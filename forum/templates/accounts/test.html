@@ -1,0 +1,23 @@
+<html>
+<head>
+
+    {% load static %}
+    <title>test page</title>
+
+</head>
+<body>
+
+    <div id='app'>
+        <div class='product'>
+            <h1>{ product }</h1>
+        </div>
+        <div class='product-link'>
+            <a v-bind:href='url'>test link</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="{% static 'test.js' %}"></script>
+
+</body>
+</html>

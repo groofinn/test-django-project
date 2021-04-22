@@ -1,0 +1,31 @@
+{% extends '../base/base.html' %}
+
+{% block header %}
+    <title>Users</title>
+    <h1>Users</h1>
+    <p>List of All Users That Have Created and Undeleted Accounts.</p>
+{% endblock %}
+    
+{% block content %}
+    {# if had users in then makes table with users #}
+    {% if users_list %}
+        <table class='table table-hover mt-1'>
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>Registration Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in page_obj %}
+                    <tr>
+                        <td class='col-9'><a href='{{ user.username }}/' class='text-decoration-none'>{{ user.username }}</a></td>
+                        <td class='col-3'>{{ user.date_joined }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table></br>
+    {% else %}
+        <p>No Users are Available.</p>
+    {% endif %}
+{% endblock %}

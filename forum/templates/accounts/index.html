@@ -1,0 +1,25 @@
+{% extends '../base/base.html' %}
+
+{% block header %}
+    <title>Accounts</title>
+    <h1>Accounts</h1>
+    <p>See Latest News About Your Account and Accounts You Follow!</p>
+{% endblock %}
+
+{% block content %}
+    {# shows user's name and some pages if logged in #}
+    <p class='mt-1'>
+        {% if user.is_authenticated %}
+            <b>You are Logged in As 
+            <span class='text-decoration-underline'>{{ user.username }}</span>.</b>
+            <p>Now You Can See the Information You are Interested in.</br>
+            We Will Find Something For You Soon!</p>
+        {% else %}
+            <b>You are 
+            <span class='text-decoration-underline'>not</span>
+             logged in.</b></br>
+            <p>That Means You Can't See Personalized News.</br>
+            You Still Can Browse Some Other Pages.</p>
+        {% endif %}
+    </p>
+{% endblock %}

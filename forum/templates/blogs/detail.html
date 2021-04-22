@@ -1,0 +1,23 @@
+{% extends '../base/base.html' %}
+
+{% block header %}
+    <title>Detail</title>
+    <h1>Detail</h1>
+    <p>Detailed Information About Blog &laquo;<span class='text-decoration-underline'>{{blog}}</span>&raquo;.</p>
+{% endblock %}
+
+{% block content %}
+    {# shows user's and blog info #}
+    <div class='row mt-1 h4'>
+        <div class='col-6 d-flex justify-content-center'>
+            &laquo;<span class='text-decoration-underline'>{{ blog }}</span>&raquo;
+        </div>
+        <div class='col-6'>
+            Published By 
+            <a href='{% url "accounts:detail" blog.user %}' class='text-decoration-none fw-bold'>{{ blog.user }}</a> 
+            on <b>{{ blog.pub_date }}</b>.
+        </div>
+    </div>
+    
+    <p class='pt-3'>{{ blog.blog_text }}</p>
+{% endblock %}

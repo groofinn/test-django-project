@@ -1,0 +1,62 @@
+{% extends '../base/base.html' %}
+
+{% block header %}
+    <title>Detail</title>
+    <h1>Detail</h1>
+    <p>Detailed Information About <b>{{ account.username }}</b>.</p>
+{% endblock %}
+
+{% block content %}
+    {# displays user's information #}
+    <div class='container-fluid pt-2'>
+        <div class='row'>
+            <div class='col-6 d-flex justify-content-center'>
+                <h3>{{ account.username }}</h3>
+            </div>
+
+            <div class='col-6'>
+                <h3>Joined <b>{{ account.date_joined }}</b></h3>
+            </div>
+        </div>
+
+        <div class='row pt-4'>
+            {% if page_obj %}
+                <div class='col-6'>
+                    <div class='d-flex justify-content-center fw-bold'>
+                        Last Activity:
+                    </div>
+                    <div class='d-flex justify-content-center'>
+                        Posted Blog
+                        &laquo;<span class='text-decoration-underline'>{{ latest }}</span>&raquo;
+                        on {{ latest.pub_date }}
+                    </div>
+                    <p class='mt-2'>{{ latest.blog_text }}</p>
+                </div>
+
+                <div class='col-6'>
+                    {# if had queryset makes list of user's blogs #}
+                    <b>{{ account.username }}'s Blogs:</b>
+
+                    <table class='table table-hover'>
+                        {% for blog in page_obj %}
+                            <tr>
+                                <td class='col-7'><a href='{% url "blogs:detail" blog.id %}' class='text-decoration-none'>{{ blog }}</a></td>
+                                <td>{{ blog.pub_date }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+
+            {% else %}
+                <div class='col-12'>
+                    <div class='d-flex justify-content-center'>
+                        <b>No {{ account.username }}'s Blogs are Available.</b>
+                    </div>
+                    <div class='d-flex justify-content-center'>
+                        <p>Looks Like {{ account.username }} Didn't Posted Anything Yet.</p>
+                    </div>
+                </div>
+            {% endif %}
+            
+        </div>
+    </div>
+{% endblock %}

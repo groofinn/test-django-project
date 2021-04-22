@@ -1,0 +1,25 @@
+{% extends '../base/base.html' %}
+
+{% block header %}
+    <title>Creation</title>
+    <h1>Creation</h1>
+    <p>Create Your Own Blog!</p>
+{% endblock %}
+
+{% block content %}
+    {# creates a blog #}
+    <form action='{% url "blogs:creation" %}', method='POST'>
+        {% csrf_token %}
+        <div class='control-group required'>
+            <div class='d-flex'>
+                <input type='submit' value='Publish' class='btn btn-lg btn-primary flex-fill mt-3 mb-2'>
+            </div>
+
+            <label for='blog_name'>Blog Name:</label>
+            <input type='text' name='blog_name' class='form-control form-control-lg mb-3' autocomplete='off'>
+
+            <label for='blog_text'>Blog Text:</label></br>
+            <textarea name='blog_text' class='form-control form-control-lg' rows='15'></textarea>
+        </div>
+    </form>
+{% endblock %}
